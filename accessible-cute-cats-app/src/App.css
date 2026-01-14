@@ -47,8 +47,8 @@
 
 .image .cat 
 {
-  width: 300px;      /* increase size */
-  height: auto;      /* keep aspect ratio */
+  width: 300px;
+  height: auto;
 }
 
 
@@ -61,4 +61,18 @@
   transition: opacity 200ms ease, transform 200ms ease;
   opacity: 1;
   transform: translateY(0);
+}
+
+
+.alert {
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  min-width: 280px;
+  max-width: 90%;
+  width: auto;
+  box-sizing: border-box;
+  display: block;
 }
