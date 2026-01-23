@@ -1,53 +1,102 @@
-import { use, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef } from 'react'
+import useCatStore from './store'
+import ragdoll from './assets/cute-ragdoll.jpg'
 import './App.css'
+import Nursery from './components/Nursery'
+import Dialog from './components/Dialog'
+import { Alert } from '@mui/material'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [inputValue, setInputValue] = useState('')
-  const labelText = 'Name'
+  const [inputName, setInputName] = useState('')
+  const [committedName, setCommittedName] = useState('')
+  const { points, feedCats, resetNursery } = useCatStore();
+  const [showConfirmReset, setShowConfirmReset] = useState(false)
+  const [showAlert, setShowAlert] = useState(false);
+  const timerRef = useRef(null);
 
-  
-  const onChangeHandler = (event) => {
-    setInputValue(event.target.value)
+  const onChangeName = (event) => {
+    setInputName(event.target.value)
   }
 
+  const commitName = () => {
+    setCommittedName(inputName.trim())
+  }
+
+  const onFeedCats = () => {
+    const added = feedCats();
+    if (added) {
+      setShowAlert(true);
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setShowAlert(false), 5000);
+    }
+  };
+
+  const onResetClick = () => {
+    setShowConfirmReset(true);
+    setShowAlert(false);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-        <label htmlFor="name">Name</label>
-        <input
-        id="name"
-        className="input-box"
-        required="true"
-        type="text"
-        // aria-label={labelText}
-        // aria-required="true"
-        onChange={onChangeHandler}
-        value={inputValue}
-        name="name"
+      <header>
+        <img src={ragdoll} className="image cat" alt="Cute cat image" />
+      </header>
+      <main>
+        <h1>
+          {committedName ? `${committedName}'s Cat Nursery` : 'Accessible React App'}
+        </h1>
+        {!committedName && (
+          <form onSubmit={(e) => { e.preventDefault(); commitName(); }}>
+            <label htmlFor="name">Please enter your name </label>
+            <input
+              id="name"
+              required
+              type="text"
+              value={inputName}
+              onChange={onChangeName}
+            />
+            <button type="submit">Save</button>
+          </form>
+        )}
+        <div className="card">
+          <p>Feed cats to get more points!</p>
+          <p>More points unlocks more cats!</p>
+          <div className='nursery-actions-container'>
+            <div>Nursery Actions:
+              <div className='nursery-action-buttons'>
+                <button onClick={onFeedCats}>
+                  Feed Cats
+                </button>
+                <button onClick={onResetClick}>
+                  Reset Nursery
+                </button>
+              </div>
+            </div>
+            <div className='points-card'>
+              <p>Points</p>
+              <p>{points}</p>
+            </div>
+          </div>
+        </div>
+        <Nursery />
+      </main>
+      <Dialog
+        isOpen={showConfirmReset}
+        title="Reset Nursery?"
+        description="This will reset your points to 0 and Remove any cats requiring points from your nursery. Are you sure you want to continue?"
+        onConfirm={() => { resetNursery(); setShowConfirmReset(false); }}
+        onCancel={() => setShowConfirmReset(false)}
       />
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {showAlert && (
+        <Alert
+          severity="success"
+          className="alert"
+          role="alert"
+          aria-atomic="true"
+        >
+          A new cat has been added to your nursery!
+        </Alert>
+      )}
     </>
   )
 }
