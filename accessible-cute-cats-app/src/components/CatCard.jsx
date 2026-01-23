@@ -1,11 +1,16 @@
+import './CatCard.css'
+
 export default function CatCard({ cat }) {
   return (
-    <div style={{ border: '1px solid #ccc', padding: 12, width: 200 }}>
-      <img src={cat.image} alt={cat.name} style={{ width: '100%', borderRadius: 8 }} />
+    <div className="cat-card-container">
+      <img src={cat.image} alt={cat.name} className="cat-image" />
       <h3>{cat.name}</h3>
-      <p>Breed: {cat.breed}</p>
-      <p>Cat Colouring: {cat.colouring}</p>
-      <p>{'Age (months): ' + cat.age}</p>
+      <div className='cat-details'>
+      <p><span className="cat-detail-label">Breed:</span> {cat.breed}</p>
+      <p><span className="cat-detail-label">Cat Colouring:</span> {cat.colouring}</p>
+      <p><span className="cat-detail-label">Age (months):</span> {cat.age}</p>
+      <p><span className="cat-detail-label">Gender:</span> {cat.gender}</p>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 
 import Cat from '../models/Cat';
-import ragdollImg from '../assets/cute-ragdoll.jpg'
+import ragdollImg from '../assets/ragdoll.jpg'
 
-const marshmallow = new Cat('Marshmallow', 'Ragdoll', 'seal point', 3, ragdollImg, 5);
+const marshmallow = new Cat('Marshmallow', 'Ragdoll', 'blue cream point', 3, "female", ragdollImg, 20);
 export default marshmallow;

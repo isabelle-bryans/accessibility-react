@@ -36,47 +36,50 @@ function App() {
     setShowAlert(false);
   }
 
-
-
   return (
     <>
-      <div>
+      <header>
         <img src={ragdoll} className="image cat" alt="Cute cat image" />
-      </div>
-      {!committedName && (
-        <form onSubmit={(e) => { e.preventDefault(); commitName(); }}>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            required={true}
-            type="text"
-            value={inputName
-
-            }
-            onChange={onChangeName}
-          />
-          <button type="submit">Save</button>
-        </form>
-      )}
-      <h1>{committedName && `${committedName}'s Cat Nursery` || 'Accessible React App'}</h1>
-      <div className="card">
-        <p>You have {points} points!</p>
-        <p className="read-the-docs">
-          Feed cats to get more points!
-        </p>
-        <p className="read-the-docs">
-          More points unlocks more cats!
-        </p>
-        <div>Nursery Actions:
-          <button onClick={onFeedCats}>
-            Feed Cats
-          </button>
-          <button onClick={onResetClick}>
-            Reset Nursery
-          </button>
+      </header>
+      <main>
+        <h1>
+          {committedName ? `${committedName}'s Cat Nursery` : 'Accessible React App'}
+        </h1>
+        {!committedName && (
+          <form onSubmit={(e) => { e.preventDefault(); commitName(); }}>
+            <label htmlFor="name">Please enter your name </label>
+            <input
+              id="name"
+              required
+              type="text"
+              value={inputName}
+              onChange={onChangeName}
+            />
+            <button type="submit">Save</button>
+          </form>
+        )}
+        <div className="card">
+          <p>Feed cats to get more points!</p>
+          <p>More points unlocks more cats!</p>
+          <div className='nursery-actions-container'>
+            <div>Nursery Actions:
+              <div className='nursery-action-buttons'>
+                <button onClick={onFeedCats}>
+                  Feed Cats
+                </button>
+                <button onClick={onResetClick}>
+                  Reset Nursery
+                </button>
+              </div>
+            </div>
+            <div className='points-card'>
+              <p>Points</p>
+              <p>{points}</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <Nursery />
+        <Nursery />
+      </main>
       <Dialog
         isOpen={showConfirmReset}
         title="Reset Nursery?"
