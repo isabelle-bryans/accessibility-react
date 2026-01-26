@@ -1,1 +1,2 @@
 # accessibility-react
+This repo contains two versions of the Cat Nursery React App. One version that adheres to accessibility guidelines, and one version that does not. They were designed for demonstrating accessible coding techniques when developing SPAs.
