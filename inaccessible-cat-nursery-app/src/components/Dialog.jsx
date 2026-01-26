@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from 'react'
 import './Dialog.css'
 
 export default function Dialog({ isOpen, title, description, onConfirm, onCancel }) {

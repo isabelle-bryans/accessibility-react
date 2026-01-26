@@ -1,16 +1,22 @@
-# React + Vite
+# Cat Nursery App
+This is a small React app designed to teach accessibile coding practices. Users can feed cats in a virtual cat nursery to earn points and unlock more cats.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
+To run the app, please have installed: 
+1. Node.js v24
+2. npm (comes automatically with Node.js)
+3. VS Code or another code editor
 
-Currently, two official plugins are available:
+## Running the App
+To run the app in dev mode: 
+1. Open the command prompt in the folder.
+2. Run `npm install` (only required to run once per app)
+3. Run `npm run dev`
+4. Open the local URL shown in the terminal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Files to Explore
+If you’d like to explore how accessibility was implemented in this app, start with these components:
+- src\App.jsx
+- src\components\Dialog.jsx
+- src\components\Nursery.jsx
+- src\components\CatCard.jsx

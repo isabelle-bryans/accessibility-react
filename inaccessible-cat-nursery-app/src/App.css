@@ -22,11 +22,10 @@ p {
 
 button{
   color:#888;
-  background-color: transparent;
-  outline: none; /* problematic*/
+  background-color: transparent; 
 }
 
-button:focus {
+.no-outline-button:focus {
   outline: none;
 }
  

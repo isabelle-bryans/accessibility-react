@@ -7,20 +7,10 @@ import Dialog from './components/Dialog'
 import { Alert } from '@mui/material'
 
 function App() {
-  const [inputName, setInputName] = useState('')
-  const [committedName, setCommittedName] = useState('')
   const { points, feedCats, resetNursery } = useCatStore();
   const [showConfirmReset, setShowConfirmReset] = useState(false)
   const [showAlert, setShowAlert] = useState(false);
   const timerRef = useRef(null);
-
-  const onChangeName = (event) => {
-    setInputName(event.target.value)
-  }
-
-  const commitName = () => {
-    setCommittedName(inputName.trim())
-  }
 
   const onFeedCats = () => {
     const added = feedCats();
@@ -39,20 +29,7 @@ function App() {
   return (
     <>
         <img src={ragdoll} className="image cat" alt="Cute cat image" />
-        <div className="title" >
-          {committedName ? `${committedName}'s Cat Nursery` : 'Accessible React App'}
-        </div>
-        {!committedName && (
-          <form onSubmit={(e) => { e.preventDefault(); commitName(); }}>
-            Please enter your name
-            <input
-              required
-              value={inputName}
-              onChange={onChangeName}
-            />
-            <button type="submit">Save</button>
-          </form>
-        )}
+        <div className="title" >Inaccessible Cat Nursery</div>
         <div className="card">
           <div className='sub-header'>Game Instructions</div>
           <p>Feed cats to get more points!</p>
@@ -61,10 +38,10 @@ function App() {
           <div className='nursery-actions-container'>
             <div>
               <div className='nursery-action-buttons'>
-                <button onClick={onFeedCats}>
+                <button className='no-outline-button' onClick={onFeedCats}>
                   Feed Cats
                 </button>
-                <button onClick={onResetClick}>
+                <button className='no-outline-button' onClick={onResetClick}>
                   Reset Nursery
                 </button>
               </div>

@@ -5,23 +5,12 @@ import './App.css'
 import Nursery from './components/Nursery'
 import Dialog from './components/Dialog'
 import { Alert } from '@mui/material'
-import FocusTrap from '@mui/material/Unstable_TrapFocus'
 
 function App() {
-  const [inputName, setInputName] = useState('')
-  const [committedName, setCommittedName] = useState('')
   const { points, feedCats, resetNursery } = useCatStore();
   const [showConfirmReset, setShowConfirmReset] = useState(false)
   const [showAlert, setShowAlert] = useState(false);
   const timerRef = useRef(null);
-
-  const onChangeName = (event) => {
-    setInputName(event.target.value)
-  }
-
-  const commitName = () => {
-    setCommittedName(inputName.trim())
-  }
 
   const onFeedCats = () => {
     const added = feedCats();
@@ -43,22 +32,7 @@ function App() {
         <img src={ragdoll} className="image cat" alt="Cute cat image" />
       </header>
       <main>
-        <h1>
-          {committedName ? `${committedName}'s Cat Nursery` : 'Accessible React App'}
-        </h1>
-        {!committedName && (
-          <form onSubmit={(e) => { e.preventDefault(); commitName(); }}>
-            <label htmlFor="name">Please enter your name </label>
-            <input
-              id="name"
-              required
-              type="text"
-              value={inputName}
-              onChange={onChangeName}
-            />
-            <button type="submit">Save</button>
-          </form>
-        )}
+        <h1>Accessible Cat Nursery</h1>
         <section className="card">
           <h2>
             Game instructions
@@ -85,14 +59,13 @@ function App() {
           </section>
         <Nursery />
       </main>
-        <FocusTrap>
       <Dialog
         isOpen={showConfirmReset}
         title="Reset Nursery?"
         description="This will reset your points to 0 and Remove any cats requiring points from your nursery. Are you sure you want to continue?"
         onConfirm={() => { resetNursery(); setShowConfirmReset(false); }}
         onCancel={() => setShowConfirmReset(false)}
-      /></FocusTrap>
+      />
       {showAlert && (
         <Alert
           severity="success"
