@@ -2,26 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import './Dialog.css'
 
 export default function Dialog({ isOpen, title, description, onConfirm, onCancel }) {
-  // const confirmRef = useRef(null)
-
-  useEffect(() => {
-    if (!isOpen) return
-
-    const previouslyFocused = document.activeElement
-    // confirmRef.current?.focus()
-
-    // Closes the dialog on Escape key press
-    // const onKey = (e) => {
-    //   if (e.key === 'Escape') onCancel()
-    // }
-
-    // document.addEventListener('keydown', onKey)
-    return () => {
-      // document.removeEventListener('keydown', onKey)
-      // previouslyFocused?.focus()
-    }
-  }, [isOpen, onCancel])
-
   if (!isOpen) return null
 
   return (
@@ -31,13 +11,8 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
       aria-describedby="confirm-dialog-desc"
-      onClick={onCancel}
-      // ref={confirmRef}
     >
-      <div
-        className="dialog"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="dialog">
         <h2 id="confirm-dialog-title">{title}</h2>
         <p id="confirm-dialog-desc">{description}</p>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>

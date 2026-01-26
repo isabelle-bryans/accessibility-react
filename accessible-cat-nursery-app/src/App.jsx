@@ -97,8 +97,9 @@ function App() {
         <Alert
           severity="success"
           className="alert"
-          role="alert"
-          aria-atomic="true" // not needed
+          // role="alert"         ARIA attributes are built-in with MUI Alert component
+          // aria-atomic="true"
+          // aria-live="polite"
         >
           A new cat has been added to your nursery!
         </Alert>

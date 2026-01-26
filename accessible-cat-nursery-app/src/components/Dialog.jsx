@@ -2,13 +2,21 @@ import React, { useEffect, useRef } from 'react'
 import './Dialog.css'
 
 export default function Dialog({ isOpen, title, description, onConfirm, onCancel }) {
+  // Reference to confirm button
   const confirmRef = useRef(null)
+
+  // Reference to the dialog container
   const dialogRef = useRef(null)
 
+  // useEffect to:
+  // 1. Move focus to the dialog when it opens.
+  // 2. Trap focus within the dialog when it's open. 
+  // 3. Return focus to previously focused element when dialog closes.
   useEffect(() => {
     if (!isOpen) return
 
     const previouslyFocused = document.activeElement
+
     // Focus the confirm button when the dialog opens
     confirmRef.current?.focus()
 
@@ -25,6 +33,7 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
         return
       }
 
+      // Make sure focus is kept within the focusable elements in the dialog
       if (e.key === 'Tab') {
         if (e.shiftKey) {
           // Shift + Tab: if focus is on first element, move to last
@@ -45,7 +54,8 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
     document.addEventListener('keydown', onKey)
     return () => {
       document.removeEventListener('keydown', onKey)
-      // Returns focus to the element that was focused before the dialog opened
+
+      // Return focus to the element that was focused before the dialog opened
       previouslyFocused?.focus()
     }
   }, [isOpen, onCancel])

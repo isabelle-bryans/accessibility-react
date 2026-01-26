@@ -87,9 +87,6 @@ function App() {
         <Alert
           severity="success"
           className="alert"
-          role="alert"
-          // aria-atomic="true"
-          // aria-live="polite"
         >
           A new cat has been added to your nursery!
         </Alert>
