@@ -38,20 +38,15 @@ function App() {
 
   return (
     <>
-      <header>
         <img src={ragdoll} className="image cat" alt="Cute cat image" />
-      </header>
-      <main>
-        <h1>
+        <div className="title" >
           {committedName ? `${committedName}'s Cat Nursery` : 'Accessible React App'}
-        </h1>
+        </div>
         {!committedName && (
           <form onSubmit={(e) => { e.preventDefault(); commitName(); }}>
-            <label htmlFor="name">Please enter your name </label>
+            Please enter your name
             <input
-              id="name"
               required
-              type="text"
               value={inputName}
               onChange={onChangeName}
             />
@@ -59,10 +54,12 @@ function App() {
           </form>
         )}
         <div className="card">
+          <div className='sub-header'>Game Instructions</div>
           <p>Feed cats to get more points!</p>
           <p>More points unlocks more cats!</p>
+          <div className='sub-header'>Game Actions and Points</div>
           <div className='nursery-actions-container'>
-            <div>Nursery Actions:
+            <div>
               <div className='nursery-action-buttons'>
                 <button onClick={onFeedCats}>
                   Feed Cats
@@ -79,7 +76,6 @@ function App() {
           </div>
         </div>
         <Nursery />
-      </main>
       <Dialog
         isOpen={showConfirmReset}
         title="Reset Nursery?"
@@ -92,7 +88,8 @@ function App() {
           severity="success"
           className="alert"
           role="alert"
-          aria-atomic="true"
+          // aria-atomic="true"
+          // aria-live="polite"
         >
           A new cat has been added to your nursery!
         </Alert>

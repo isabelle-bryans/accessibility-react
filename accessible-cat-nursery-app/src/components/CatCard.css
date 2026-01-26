@@ -13,13 +13,10 @@
 .cat-details {
     margin: 1rem;
     text-align: left;
-}
-
-.cat-details p{
     font-size: small;
 }
 
 
-.cat-detail-label{
+.cat-details dt{
     font-weight: bold;
 }

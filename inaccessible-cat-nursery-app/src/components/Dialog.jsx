@@ -2,22 +2,23 @@ import React, { useEffect, useRef } from 'react'
 import './Dialog.css'
 
 export default function Dialog({ isOpen, title, description, onConfirm, onCancel }) {
-  const confirmRef = useRef(null)
+  // const confirmRef = useRef(null)
 
   useEffect(() => {
     if (!isOpen) return
 
     const previouslyFocused = document.activeElement
-    confirmRef.current?.focus()
+    // confirmRef.current?.focus()
 
-    const onKey = (e) => {
-      if (e.key === 'Escape') onCancel()
-    }
+    // Closes the dialog on Escape key press
+    // const onKey = (e) => {
+    //   if (e.key === 'Escape') onCancel()
+    // }
 
-    document.addEventListener('keydown', onKey)
+    // document.addEventListener('keydown', onKey)
     return () => {
-      document.removeEventListener('keydown', onKey)
-      previouslyFocused?.focus()
+      // document.removeEventListener('keydown', onKey)
+      // previouslyFocused?.focus()
     }
   }, [isOpen, onCancel])
 
@@ -31,6 +32,7 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
       aria-labelledby="confirm-dialog-title"
       aria-describedby="confirm-dialog-desc"
       onClick={onCancel}
+      // ref={confirmRef}
     >
       <div
         className="dialog"
@@ -40,7 +42,7 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
         <p id="confirm-dialog-desc">{description}</p>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
           <button onClick={onCancel} aria-label="Cancel">Cancel</button>
-          <button ref={confirmRef} onClick={onConfirm} aria-label="Confirm">Confirm</button>
+          <button onClick={onConfirm} aria-label="Confirm">Confirm</button>
         </div>
       </div>
     </div>

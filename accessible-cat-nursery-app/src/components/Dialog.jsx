@@ -3,20 +3,49 @@ import './Dialog.css'
 
 export default function Dialog({ isOpen, title, description, onConfirm, onCancel }) {
   const confirmRef = useRef(null)
+  const dialogRef = useRef(null)
 
   useEffect(() => {
     if (!isOpen) return
 
     const previouslyFocused = document.activeElement
+    // Focus the confirm button when the dialog opens
     confirmRef.current?.focus()
 
+    // Get all focusable elements within the dialog
+    const focusableElements = dialogRef.current.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const firstElement = focusableElements[0]
+    const lastElement = focusableElements[focusableElements.length - 1]
+
     const onKey = (e) => {
-      if (e.key === 'Escape') onCancel()
+      if (e.key === 'Escape') {
+        onCancel()
+        return
+      }
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          // Shift + Tab: if focus is on first element, move to last
+          if (document.activeElement === firstElement) {
+            e.preventDefault()
+            lastElement.focus()
+          }
+        } else {
+          // Tab: if focus is on last element, move to first
+          if (document.activeElement === lastElement) {
+            e.preventDefault()
+            firstElement.focus()
+          }
+        }
+      }
     }
 
     document.addEventListener('keydown', onKey)
     return () => {
       document.removeEventListener('keydown', onKey)
+      // Returns focus to the element that was focused before the dialog opened
       previouslyFocused?.focus()
     }
   }, [isOpen, onCancel])
@@ -30,12 +59,8 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
       aria-describedby="confirm-dialog-desc"
-      onClick={onCancel}
     >
-      <div
-        className="dialog"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="dialog" ref={dialogRef}>
         <h2 id="confirm-dialog-title">{title}</h2>
         <p id="confirm-dialog-desc">{description}</p>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>

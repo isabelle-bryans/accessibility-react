@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.instructions {
+p {
   color: #888;
 }
 
@@ -14,6 +14,28 @@
   height: auto;
 }
 
+.title{
+  font-size: 50px;
+  font-weight: bold;
+}
+
+
+button{
+  color:#888;
+  background-color: transparent;
+  outline: none; /* problematic*/
+}
+
+button:focus {
+  outline: none;
+}
+ 
+
+.sub-header{
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 2rem;
+}
 
 
 .alert {

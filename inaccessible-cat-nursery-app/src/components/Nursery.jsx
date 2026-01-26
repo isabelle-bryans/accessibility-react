@@ -7,8 +7,8 @@ export default function Nursery() {
 
   return (
     <div className='nursery-container'>
-    <h2>Cats</h2>
-    <div className="nursery" aria-label="Available cats">
+    <div className="nursery-header">Cats</div>
+    <div className="nursery">
       {cats.map((cat, index) => (
         <div key={index} >
           <CatCard cat={cat} />

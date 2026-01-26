@@ -3,8 +3,12 @@
     flex-wrap: wrap;
     flex-direction: row;
     gap: 16px;
+    align-items: center;
+}
+section {
+  margin-top: 3rem;
 }
 
-.nursery-container {
-    margin-top: 3rem;
+ul {
+    list-style: none;
 }

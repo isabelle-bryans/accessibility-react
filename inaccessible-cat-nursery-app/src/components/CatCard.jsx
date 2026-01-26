@@ -3,8 +3,8 @@ import './CatCard.css'
 export default function CatCard({ cat }) {
   return (
     <div className="cat-card-container">
-      <img src={cat.image} alt={cat.name} className="cat-image" />
-      <h3>{cat.name}</h3>
+      <img src={cat.image} className="cat-image" />
+      <div className="cat-name">{cat.name}</div>
       <div className='cat-details'>
       <p><span className="cat-detail-label">Breed:</span> {cat.breed}</p>
       <p><span className="cat-detail-label">Cat Colouring:</span> {cat.colouring}</p>
