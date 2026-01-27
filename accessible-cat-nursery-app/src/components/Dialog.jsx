@@ -65,17 +65,17 @@ export default function Dialog({ isOpen, title, description, onConfirm, onCancel
   return (
     <div
       className="dialog-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="confirm-dialog-title"
-      aria-describedby="confirm-dialog-desc"
+      role="dialog" // Announces that it is a dialog to assistive technologies
+      aria-modal="true" // Informs assistive tech that background content is inert
+      aria-labelledby="confirm-dialog-title" // Links title for screen readers
+      aria-describedby="confirm-dialog-desc" // Links description for screen readers
     >
       <div className="dialog" ref={dialogRef}>
         <h2 id="confirm-dialog-title">{title}</h2>
         <p id="confirm-dialog-desc">{description}</p>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
-          <button onClick={onCancel} aria-label="Cancel">Cancel</button>
-          <button ref={confirmRef} onClick={onConfirm} aria-label="Confirm">Confirm</button>
+          <button onClick={onCancel}>Cancel</button>
+          <button ref={confirmRef} onClick={onConfirm}>Confirm</button>
         </div>
       </div>
     </div>
