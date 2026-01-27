@@ -8,10 +8,13 @@ p {
   color: #888;
 }
 
-.image .cat 
+.large-cat-image
 {
+  height: 450px;
+  background-image: url('assets/cute-ragdoll.jpg');
+  background-size: 100% 100%;
   width: 300px;
-  height: auto;
+  margin: 40px auto;
 }
 
 .title{

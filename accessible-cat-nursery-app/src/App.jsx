@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <header>
-        <img src={ragdoll} className="image cat" alt="Cute cat image" />
+        <img src={ragdoll} className="large-cat-image" alt="Cute cat image" />
       </header>
       <main>
         <h1>Accessible Cat Nursery</h1>
