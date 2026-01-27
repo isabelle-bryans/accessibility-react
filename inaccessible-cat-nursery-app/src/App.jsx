@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-        <img src={ragdoll} className="image cat" alt="Cute cat image" />
+        <img src={ragdoll} className="image cat" />
         <div className="title" >Inaccessible Cat Nursery</div>
         <div className="card">
           <div className='sub-header'>Game Instructions</div>
